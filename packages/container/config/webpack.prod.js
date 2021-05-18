@@ -10,16 +10,15 @@ const dashboardDomain = process.env.PROD_DASHBOARD_DOMAIN;
 const prodConfig = {
   mode: 'production',
   output: {
-    filename: '[name].[contenthash].js',
-    publicPath: '/container/latest/',
+    filename: '[name].js',
   },
   plugins: [
     new ModuleFederationPlugin({
       name: 'container',
       remotes: {
-        marketing: `marketing@${marketingDomain}/marketing/latest/remoteEntry.js`,
-        auth: `auth@${authDomain}/auth/latest/remoteEntry.js`,
-        dashboard: `dashboard@${dashboardDomain}/dashboard/latest/remoteEntry.js`,
+        marketing: `marketing@${marketingDomain}/remoteEntry.js`,
+        auth: `auth@${authDomain}/remoteEntry.js`,
+        dashboard: `dashboard@${dashboardDomain}/remoteEntry.js`,
       },
       shared: packageJson.dependencies,
     }),
